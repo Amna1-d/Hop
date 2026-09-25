@@ -1,0 +1,1016 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>عيد ميلاد سعيد صلاحي 🎉</title>
+    <!-- خطوط عربية فاخرة وأيقونات -->
+    <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Aref+Ruqaa:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+    
+    <style>
+        :root {
+            --bg-gradient: linear-gradient(135deg, #fdfbf7 0%, #e6d5b8 100%);
+            --primary-color: #c5a059;
+            --dark-gold: #9e7d3b;
+            --card-bg: rgba(255, 255, 255, 0.92);
+            --text-color: #4a4238;
+            --border-color: #e5d9c5;
+            --pink-accent: #e84393;
+        }
+
+        /* الوضع الليلي الرومانسي */
+        body.dark-mode .mobile-wrapper {
+            background: linear-gradient(135deg, #1e1b2e 0%, #0f0c1b 100%);
+        }
+
+        body.dark-mode {
+            --primary-color: #f3a683;
+            --dark-gold: #f8a5c2;
+            --card-bg: rgba(30, 27, 46, 0.85);
+            --text-color: #f1f2f6;
+            --border-color: #574b90;
+        }
+
+        body.dark-mode .stat-card,
+        body.dark-mode .envelope-card,
+        body.dark-mode .timeline-content,
+        body.dark-mode .modal-content,
+        body.dark-mode .wheel-container-wrapper {
+            background: #25213b !important;
+            color: #fff;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Amiri', serif;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            background-color: #1a1a1a;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            color: var(--text-color);
+            transition: background 0.5s ease;
+        }
+
+        /* حاوية شاشة الموبايل */
+        .mobile-wrapper {
+            width: 100%;
+            max-width: 430px;
+            height: 100vh;
+            max-height: 932px;
+            background: var(--bg-gradient);
+            position: relative;
+            overflow-y: auto;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            scroll-behavior: smooth;
+            -webkit-overflow-scrolling: touch;
+            transition: background 0.5s ease;
+        }
+
+        /* حاوية القلوب المتحركة في الخلفية */
+        .hearts-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .heart-particle {
+            position: absolute;
+            bottom: -20px;
+            font-size: 1.2rem;
+            color: rgba(220, 53, 69, 0.6);
+            animation: floatUp 6s linear infinite;
+        }
+
+        @keyframes floatUp {
+            0% {
+                transform: translateY(0) scale(0.8) rotate(0deg);
+                opacity: 0;
+            }
+            20% {
+                opacity: 0.8;
+            }
+            100% {
+                transform: translateY(-950px) scale(1.2) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        /* أزرار التحكم العلوي (الموسيقى والوضع الليلي) */
+        .top-controls {
+            position: fixed;
+            top: 15px;
+            left: 15px;
+            z-index: 1000;
+            display: flex;
+            gap: 10px;
+        }
+
+        .control-btn {
+            background: rgba(197, 160, 89, 0.95);
+            color: white;
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s;
+            border: none;
+        }
+
+        .control-btn:active {
+            transform: scale(0.9);
+        }
+
+        /* شاشة الشمعة والأغنية الأولى */
+        .candle-screen {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #f0e6d2 0%, #e6d5b8 100%);
+            z-index: 100;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            transition: transform 1.2s cubic-bezier(0.77, 0, 0.175, 1), opacity 0.8s ease;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .candle-screen.opened {
+            transform: translateY(-100%);
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .cake-container {
+            position: relative;
+            cursor: pointer;
+            margin-bottom: 30px;
+        }
+
+        .cake-icon {
+            font-size: 110px;
+            color: var(--primary-color);
+            filter: drop-shadow(0 8px 15px rgba(0,0,0,0.15));
+        }
+
+        .flame {
+            position: absolute;
+            top: 5px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 18px;
+            height: 28px;
+            background: #ffbe76;
+            border-radius: 50% 50% 35% 35%;
+            box-shadow: 0 0 15px #ffbe76, 0 0 25px #ff7979;
+            animation: flicker 0.8s infinite alternate;
+        }
+
+        .flame.off {
+            display: none;
+        }
+
+        @keyframes flicker {
+            0% { transform: translateX(-50%) scale(1) rotate(-2deg); }
+            100% { transform: translateX(-50%) scale(1.15) rotate(2deg); }
+        }
+
+        .instruction-text {
+            font-family: 'Aref Ruqaa', serif;
+            font-size: 1.4rem;
+            color: var(--dark-gold);
+            background: rgba(255, 255, 255, 0.85);
+            padding: 10px 25px;
+            border-radius: 25px;
+            border: 1px solid var(--border-color);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+            animation: pulse 1.8s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
+        /* المحتوى الرئيسي للمعايدة */
+        .content {
+            padding: 35px 20px;
+            text-align: center;
+            opacity: 0;
+            transition: opacity 1s ease 0.5s;
+            position: relative;
+            z-index: 2;
+        }
+
+        .content.show {
+            opacity: 1;
+        }
+
+        .birthday-header {
+            font-family: 'Aref Ruqaa', serif;
+            font-size: 2.6rem;
+            color: var(--dark-gold);
+            margin-bottom: 5px;
+        }
+
+        .name-title {
+            font-family: 'Aref Ruqaa', serif;
+            font-size: 2.8rem;
+            color: var(--primary-color);
+            margin-bottom: 20px;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+        }
+
+        .card-box {
+            background: var(--card-bg);
+            border-radius: 12px;
+            padding: 22px;
+            box-shadow: 0 6px 18px rgba(0,0,0,0.05);
+            margin-bottom: 20px;
+            border: 1px solid var(--border-color);
+        }
+
+        .message-text {
+            font-size: 1.25rem;
+            line-height: 2;
+            color: var(--text-color);
+            text-align: center;
+        }
+
+        /* حاسبة العمر وعمر الحب */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            margin-bottom: 20px;
+        }
+
+        .stat-card {
+            background: #fff;
+            border: 1px solid var(--border-color);
+            border-radius: 10px;
+            padding: 15px 10px;
+            box-shadow: 0 3px 8px rgba(0,0,0,0.03);
+            transition: background 0.3s;
+        }
+
+        .stat-title {
+            font-family: 'Aref Ruqaa', serif;
+            font-size: 1.2rem;
+            color: var(--dark-gold);
+            margin-bottom: 5px;
+        }
+
+        .stat-value {
+            font-size: 1.1rem;
+            font-weight: bold;
+            color: var(--text-color);
+            line-height: 1.5;
+        }
+
+        .section-title {
+            font-family: 'Aref Ruqaa', serif;
+            font-size: 1.7rem;
+            color: var(--dark-gold);
+            margin: 25px 0 15px;
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 50%;
+            height: 2px;
+            background: var(--primary-color);
+            margin: 5px auto 0;
+        }
+
+        /* العداد التنازلي للحدث القادم */
+        .countdown-box {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 15px;
+            padding: 18px 10px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.04);
+        }
+
+        .countdown-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 8px;
+            margin-top: 10px;
+        }
+
+        .countdown-item {
+            background: rgba(197, 160, 89, 0.15);
+            border-radius: 10px;
+            padding: 10px 5px;
+            border: 1px solid var(--primary-color);
+        }
+
+        .countdown-number {
+            font-size: 1.3rem;
+            font-weight: bold;
+            color: var(--dark-gold);
+        }
+
+        .countdown-label {
+            font-size: 0.85rem;
+            color: var(--text-color);
+        }
+
+        /* قسم رسائل الأظرف السريّة */
+        .envelopes-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+            margin: 20px 0;
+        }
+
+        .envelope-card {
+            background: #fff;
+            border: 1.5px solid var(--primary-color);
+            border-radius: 12px;
+            padding: 15px 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.04);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .envelope-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 15px rgba(197, 160, 89, 0.25);
+        }
+
+        .envelope-card i {
+            font-size: 1.8rem;
+            color: var(--primary-color);
+        }
+
+        .envelope-card span {
+            font-family: 'Aref Ruqaa', serif;
+            font-size: 1rem;
+            color: var(--dark-gold);
+            font-weight: bold;
+        }
+
+        /* عجلة الحظ الوردية */
+        .wheel-container-wrapper {
+            background: #fff;
+            border: 1px solid var(--border-color);
+            border-radius: 15px;
+            padding: 20px 10px;
+            margin: 20px 0;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.04);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .wheel-box {
+            position: relative;
+            width: 260px;
+            height: 260px;
+            margin: 15px 0;
+        }
+
+        .wheel-pointer {
+            position: absolute;
+            top: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 0;
+            height: 0;
+            border-left: 15px solid transparent;
+            border-right: 15px solid transparent;
+            border-top: 25px solid #d63031;
+            z-index: 10;
+        }
+
+        .wheel {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            border: 5px solid #fd79a8;
+            position: relative;
+            overflow: hidden;
+            transition: transform 4s cubic-bezier(0.15, 0.99, 0.18, 1);
+            box-shadow: 0 0 15px rgba(253, 121, 168, 0.4);
+            background: conic-gradient(
+                #ff75a0 0deg 60deg,
+                #ffb3c6 60deg 120deg,
+                #f8a5c2 120deg 180deg,
+                #ff75a0 180deg 240deg,
+                #ffb3c6 240deg 300deg,
+                #f8a5c2 300deg 360deg
+            );
+        }
+
+        .wheel-center-btn {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 65px;
+            height: 65px;
+            background: #fff;
+            border: 3px solid #fd79a8;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Aref Ruqaa', serif;
+            font-size: 1.1rem;
+            color: #d63031;
+            font-weight: bold;
+            cursor: pointer;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+            z-index: 5;
+        }
+
+        .wheel-item-text {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 50%;
+            height: 20px;
+            transform-origin: 0% 50%;
+            text-align: right;
+            padding-right: 15px;
+            font-size: 0.85rem;
+            font-weight: bold;
+            color: #fff;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+        }
+
+        /* نافذة العرض الصافية للرسالة والعجلة (Modal) */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 2000;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+            padding: 20px;
+        }
+
+        .modal-overlay.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .modal-content {
+            background: #fff;
+            border-radius: 15px;
+            padding: 25px;
+            max-width: 350px;
+            width: 100%;
+            text-align: center;
+            border: 2px solid var(--primary-color);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+            transform: scale(0.8);
+            transition: transform 0.3s ease;
+            position: relative;
+        }
+
+        .modal-overlay.active .modal-content {
+            transform: scale(1);
+        }
+
+        .modal-icon {
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            margin-bottom: 10px;
+        }
+
+        .modal-title {
+            font-family: 'Aref Ruqaa', serif;
+            font-size: 1.5rem;
+            color: var(--dark-gold);
+            margin-bottom: 12px;
+        }
+
+        .modal-body {
+            font-size: 1.15rem;
+            line-height: 1.8;
+            color: var(--text-color);
+            margin-bottom: 20px;
+        }
+
+        .close-btn {
+            background: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 8px 25px;
+            border-radius: 20px;
+            font-family: 'Aref Ruqaa', serif;
+            font-size: 1.1rem;
+            cursor: pointer;
+            box-shadow: 0 3px 8px rgba(0,0,0,0.15);
+        }
+
+        /* تصميم خارطة طريق الذكريات */
+        .timeline {
+            position: relative;
+            padding: 10px 0;
+            margin: 15px 0;
+            text-align: right;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            right: 20px;
+            width: 2px;
+            background: var(--primary-color);
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 25px;
+            padding-right: 45px;
+        }
+
+        .timeline-icon {
+            position: absolute;
+            right: 8px;
+            top: 0;
+            width: 26px;
+            height: 26px;
+            border-radius: 50%;
+            background: #fff;
+            border: 2px solid var(--primary-color);
+            color: var(--dark-gold);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8rem;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .timeline-content {
+            background: #fff;
+            border: 1px solid var(--border-color);
+            border-radius: 10px;
+            padding: 14px 16px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.03);
+        }
+
+        .timeline-date {
+            font-family: 'Aref Ruqaa', serif;
+            font-size: 1.1rem;
+            color: var(--dark-gold);
+            font-weight: bold;
+            margin-bottom: 4px;
+        }
+
+        .timeline-desc {
+            font-size: 1.05rem;
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+
+        /* معرض الصور */
+        .gallery-container {
+            display: flex;
+            gap: 12px;
+            overflow-x: auto;
+            padding: 10px 5px;
+            scroll-snap-type: x mandatory;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        .gallery-container::-webkit-scrollbar {
+            height: 4px;
+        }
+
+        .gallery-container::-webkit-scrollbar-thumb {
+            background: var(--primary-color);
+            border-radius: 4px;
+        }
+
+        .gallery-item {
+            flex: 0 0 250px;
+            height: 320px;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            scroll-snap-align: center;
+            background: #fff;
+            border: 2px solid var(--primary-color);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        footer {
+            margin-top: 35px;
+            font-size: 0.9rem;
+            color: #888;
+            padding-top: 15px;
+            border-top: 1px solid var(--border-color);
+        }
+    </style>
+</head>
+<body>
+
+    <!-- أغنية عيد الميلاد "Happy Birthday To You" -->
+    <audio id="birthdayAudio" loop preload="auto">
+        <source src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_c8c8a1e941.mp3?filename=happy-birthday-155461.mp3" type="audio/mpeg">
+    </audio>
+
+    <!-- أزرار التحكم بالموسيقى والوضع الليلي -->
+    <div class="top-controls">
+        <button class="control-btn" id="musicBtn" onclick="toggleMusic()" style="display: none;">
+            <i class="fa-solid fa-music" id="musicIcon"></i>
+        </button>
+        <button class="control-btn" onclick="toggleTheme()">
+            <i class="fa-solid fa-moon" id="themeIcon"></i>
+        </button>
+    </div>
+
+    <div class="mobile-wrapper">
+        <!-- القلوب المتحركة في الخلفية -->
+        <div class="hearts-container" id="heartsContainer"></div>
+
+        <!-- شاشة نفخ الشمعة -->
+        <div class="candle-screen" id="candleScreen">
+            <div class="cake-container" onclick="blowCandle()">
+                <div class="flame" id="flame"></div>
+                <i class="fa-solid fa-birthday-cake cake-icon"></i>
+            </div>
+            <div class="instruction-text">🎂 اضغط على الشمعة لنفخها! 🎂</div>
+        </div>
+
+        <!-- المحتوى الداخلي للمعايدة -->
+        <div class="content" id="mainContent">
+            <div class="birthday-header">🎉 Happy Birthday 🎉</div>
+            <div class="name-title">صلاحي ❤️</div>
+
+            <!-- بطاقة المعايدة والرسالة -->
+            <div class="card-box">
+                <p class="message-text">
+                    كل سنة وانت طيب وسنة سعيدة عليك ومليانة بالنجاحات والفرح، ربنا يخليك لي وما يحرمني منك وان شاءالله السنة الجاية في بيتنا وابو لميس مرة وحدة 🙈❤️
+                </p>
+            </div>
+
+            <!-- عداد تنازلي لذكرى الارتباط القادمة -->
+            <div class="countdown-box">
+                <div class="stat-title">⏳ المتبقي لذكرى ارتباطنا القادمة (11 أبريل)</div>
+                <div class="countdown-grid">
+                    <div class="countdown-item">
+                        <div class="countdown-number" id="cdDays">0</div>
+                        <div class="countdown-label">يوم</div>
+                    </div>
+                    <div class="countdown-item">
+                        <div class="countdown-number" id="cdHours">0</div>
+                        <div class="countdown-label">ساعة</div>
+                    </div>
+                    <div class="countdown-item">
+                        <div class="countdown-number" id="cdMinutes">0</div>
+                        <div class="countdown-label">دقيقة</div>
+                    </div>
+                    <div class="countdown-item">
+                        <div class="countdown-number" id="cdSeconds">0</div>
+                        <div class="countdown-label">ثانية</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- قسم صندوق الرسائل السريّة -->
+            <div class="section-title">💌 رسائل خاصة لك</div>
+            <div class="envelopes-grid">
+                <div class="envelope-card" onclick="openLetter(1)">
+                    <i class="fa-envelope-open-text fa-solid"></i>
+                    <span>ذكرى مميزة ✨</span>
+                </div>
+                <div class="envelope-card" onclick="openLetter(2)">
+                    <i class="fa-heart-circle-bolt fa-solid"></i>
+                    <span>ليه بحبك؟ 🙈</span>
+                </div>
+                <div class="envelope-card" onclick="openLetter(3)">
+                    <i class="fa-crown fa-solid"></i>
+                    <span>أمنيتي ليك 🥺</span>
+                </div>
+            </div>
+
+            <!-- عجلة الحظ الوردية -->
+            <div class="section-title">🎡 عجلة الحظ الوردية</div>
+            <div class="wheel-container-wrapper">
+                <div class="stat-title">لف العجلة وشوف حظك اليومي معي! 💖</div>
+                <div class="wheel-box">
+                    <div class="wheel-pointer"></div>
+                    <div class="wheel" id="wheel">
+                        <div class="wheel-item-text" style="transform: rotate(30deg) translate(-10px, -5px);">طلب مجاب 👑</div>
+                        <div class="wheel-item-text" style="transform: rotate(90deg) translate(-10px, -5px);">عزومة قهوة ☕</div>
+                        <div class="wheel-item-text" style="transform: rotate(150deg) translate(-10px, -5px);">يوم بدون خناق 😇</div>
+                        <div class="wheel-item-text" style="transform: rotate(210deg) translate(-10px, -5px);">اختيار الفيلم 🎬</div>
+                        <div class="wheel-item-text" style="transform: rotate(270deg) translate(-10px, -5px);">حضن كبير 🫂</div>
+                        <div class="wheel-item-text" style="transform: rotate(330deg) translate(-10px, -5px);">أكلة بتحبها 🍝</div>
+                    </div>
+                    <div class="wheel-center-btn" onclick="spinWheel()">لفها! 🎡</div>
+                </div>
+            </div>
+
+            <!-- حاسبة العمر وعمر الحب -->
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-title">🎈 العمر الحالي</div>
+                    <div class="stat-value" id="personAge">---</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-title">❤️ عمر الحب</div>
+                    <div class="stat-value" id="loveAge">---</div>
+                </div>
+            </div>
+
+            <!-- خارطة طريق الذكريات -->
+            <div class="section-title">📍 خارطة طريق ذكرياتنا</div>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-icon"><i class="fa-solid fa-star"></i></div>
+                    <div class="timeline-content">
+                        <div class="timeline-date">04 أكتوبر 2002</div>
+                        <div class="timeline-desc">يوم أنورت الدنيا بوجودك ونور حياتك 🌟</div>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-icon"><i class="fa-solid fa-heart"></i></div>
+                    <div class="timeline-content">
+                        <div class="timeline-date">11 أبريل 2023</div>
+                        <div class="timeline-desc">بداية حكايتنا ويوم ارتباطنا السعيد ❤️</div>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-icon"><i class="fa-solid fa-handshake"></i></div>
+                    <div class="timeline-content">
+                        <div class="timeline-date">11 أبريل 2024</div>
+                        <div class="timeline-desc">أول يوم لقائنا وأجمل بداية لذكرياتنا ✨</div>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-icon"><i class="fa-solid fa-cake-candles"></i></div>
+                    <div class="timeline-content">
+                        <div class="timeline-date">عيد ميلادك اليوم</div>
+                        <div class="timeline-desc">نحتفل بسنة جديدة معاً وأنت بكامل الصحة والسعادة 🎂</div>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-icon"><i class="fa-solid fa-house-chimney-heart"></i></div>
+                    <div class="timeline-content">
+                        <div class="timeline-date">المستقبل القريب</div>
+                        <div class="timeline-desc">في بيتنا السعيد ومستقبلنا المشرق معاً إن شاء الله 💍🏠</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- معرض الصور والذكريات -->
+            <div class="section-title">ألبوم أحلى اللحظات</div>
+            <div class="gallery-container">
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1530103862676-de8c9debad1d?auto=format&fit=crop&w=600&q=80" alt="ذكريات 1">
+                </div>
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1513151233558-d860c5398176?auto=format&fit=crop&w=600&q=80" alt="ذكريات 2">
+                </div>
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1464349095431-e9a21285b5f3?auto=format&fit=crop&w=600&q=80" alt="ذكريات 3">
+                </div>
+            </div>
+
+            <footer>
+                صُنعت بـ ❤️ بمناسبة عيد الميلاد
+            </footer>
+        </div>
+    </div>
+
+    <!-- النافذة المنبثقة للرسائل والعجلة -->
+    <div class="modal-overlay" id="letterModal">
+        <div class="modal-content">
+            <div class="modal-icon" id="modalIcon">💌</div>
+            <div class="modal-title" id="modalTitle">عنوان الرسالة</div>
+            <div class="modal-body" id="modalBody">محتوى الرسالة...</div>
+            <button class="close-btn" onclick="closeLetter()">إغلاق 💕</button>
+        </div>
+    </div>
+
+    <script>
+        const audio = document.getElementById('birthdayAudio');
+        const musicBtn = document.getElementById('musicBtn');
+        const musicIcon = document.getElementById('musicIcon');
+
+        // القلوب المتحركة
+        function createHearts() {
+            const container = document.getElementById('heartsContainer');
+            const heartIcons = ['❤️', '💖', '✨', '💕', '💗'];
+            
+            for (let i = 0; i < 15; i++) {
+                const heart = document.createElement('div');
+                heart.className = 'heart-particle';
+                heart.innerText = heartIcons[Math.floor(Math.random() * heartIcons.length)];
+                heart.style.left = Math.random() * 100 + '%';
+                heart.style.animationDelay = Math.random() * 5 + 's';
+                heart.style.animationDuration = (Math.random() * 3 + 4) + 's';
+                container.appendChild(heart);
+            }
+        }
+        createHearts();
+
+        function blowCandle() {
+            document.getElementById('flame').classList.add('off');
+            confetti({ particleCount: 120, spread: 70, origin: { y: 0.6 } });
+
+            setTimeout(() => {
+                document.getElementById('candleScreen').classList.add('opened');
+                document.getElementById('mainContent').classList.add('show');
+                audio.play().then(() => {
+                    musicBtn.style.display = 'flex';
+                }).catch(error => {
+                    musicBtn.style.display = 'flex';
+                });
+            }, 800);
+        }
+
+        function toggleMusic() {
+            if (audio.paused) {
+                audio.play();
+                musicIcon.className = "fa-solid fa-music";
+            } else {
+                audio.pause();
+                musicIcon.className = "fa-solid fa-volume-xmark";
+            }
+        }
+
+        // الوضع الليلي
+        function toggleTheme() {
+            document.body.classList.toggle('dark-mode');
+            const icon = document.getElementById('themeIcon');
+            if(document.body.classList.contains('dark-mode')) {
+                icon.className = "fa-solid fa-sun";
+            } else {
+                icon.className = "fa-solid fa-moon";
+            }
+        }
+
+        // الرسائل السريّة
+        const letters = {
+            1: {
+                icon: "✨",
+                title: "أحلى يوم في عمري",
+                body: "عارف؟ أحلى وأجمل يوم مستحيل أنساه في حياتي كلها هو اليوم العملت فيه القروب حقنا.. كان يوم مميز لدرجة ما متخيل أنَا انبسطت فيه قدر كيف! وإن شاء الله الحركة دي تبسطك زي ما بسطتني وأكثر 🙈❤️"
+            },
+            2: {
+                icon: "🥰",
+                title: "ليه حبّيتك؟",
+                body: "أول سبب خلاني أقع في حبك هو حنيتك الشديدة وعدم رضاك إنك تخليني أنوم زعلانة أبداً.. وتاني سبب؟ قوة شخصيتك الهيبة مع ظرافتك ولطافة قلبك الما في منها اثنتين 🙈❤️"
+            },
+            3: {
+                icon: "💍",
+                title: "أكبر أمنية",
+                body: "أكبر أمنية في قلبي يا صلاحي إننا العيد الجاي نكون سوى، ونحتفل القادمة بذكرى زواجنا وعشنا السعيد وأنت معي وفي قلبي للأبد 🥺❤️"
+            }
+        };
+
+        function openLetter(id) {
+            const letter = letters[id];
+            document.getElementById('modalIcon').innerText = letter.icon;
+            document.getElementById('modalTitle').innerText = letter.title;
+            document.getElementById('modalBody').innerText = letter.body;
+            document.getElementById('letterModal').classList.add('active');
+            confetti({ particleCount: 30, spread: 50, origin: { y: 0.5 } });
+        }
+
+        function closeLetter() {
+            document.getElementById('letterModal').classList.remove('active');
+        }
+
+        // عجلة الحظ الوردية
+        let isSpinning = false;
+        const rewards = [
+            "مبروك! حصلت على: أكلة بتحبها من إيدي 🍝",
+            "مبروك! حصلت على: طلب مجاب فوراً بدون تردد 👑",
+            "مبروك! حصلت على: عزومة قهوة/عصير عليّ ☕",
+            "مبروك! حصلت على: يوم كامل بدون أي خناق أو زعل 😇",
+            "مبروك! حصلت على: حق اختيار فيلم السهرة القادمة 🎬",
+            "مبروك! حصلت على: حضن كبير ودافئ 🫂"
+        ];
+
+        function spinWheel() {
+            if (isSpinning) return;
+            isSpinning = true;
+
+            const wheel = document.getElementById('wheel');
+            const randomDegrees = Math.floor(3600 + Math.random() * 360); 
+            wheel.style.transform = `rotate(${randomDegrees}deg)`;
+
+            setTimeout(() => {
+                isSpinning = false;
+                const actualDegrees = randomDegrees % 360;
+                const index = Math.floor((360 - actualDegrees) / 60) % 6;
+                
+                document.getElementById('modalIcon').innerText = "🎁";
+                document.getElementById('modalTitle').innerText = "نتيجة عجلة الحظ!";
+                document.getElementById('modalBody').innerText = rewards[index];
+                document.getElementById('letterModal').classList.add('active');
+                
+                confetti({ particleCount: 80, spread: 80, origin: { y: 0.6 } });
+            }, 4000);
+        }
+
+        // العداد التنازلي لموعد الارتباط القادم (11 أبريل)
+        function updateAnniversaryCountdown() {
+            const now = new Date();
+            let currentYear = now.getFullYear();
+            let nextAnniversary = new Date(`${currentYear}-04-11T00:00:00`);
+
+            if (now > nextAnniversary) {
+                nextAnniversary = new Date(`${currentYear + 1}-04-11T00:00:00`);
+            }
+
+            const diff = nextAnniversary - now;
+
+            const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+            const minutes = Math.floor((diff / 1000 / 60) % 60);
+            const seconds = Math.floor((diff / 1000) % 60);
+
+            document.getElementById('cdDays').innerText = days;
+            document.getElementById('cdHours').innerText = hours;
+            document.getElementById('cdMinutes').innerText = minutes;
+            document.getElementById('cdSeconds').innerText = seconds;
+        }
+
+        setInterval(updateAnniversaryCountdown, 1000);
+        updateAnniversaryCountdown();
+
+        // حساب العمر وعمر الحب
+        function calculateDifference(startDate) {
+            const start = new Date(startDate);
+            const now = new Date();
+
+            let years = now.getFullYear() - start.getFullYear();
+            let months = now.getMonth() - start.getMonth();
+            let days = now.getDate() - start.getDate();
+
+            if (days < 0) {
+                months--;
+                const lastMonth = new Date(now.getFullYear(), now.getMonth(), 0);
+                days += lastMonth.getDate();
+            }
+
+            if (months < 0) {
+                years--;
+                months += 12;
+            }
+
+            return { years, months, days };
+        }
+
+        const birthDiff = calculateDifference('2002-10-04');
+        document.getElementById('personAge').innerText = `${birthDiff.years} سنة و ${birthDiff.months} أشهر`;
+
+        const loveDiff = calculateDifference('2023-04-11');
+        document.getElementById('loveAge').innerText = `${loveDiff.years} سنة و ${loveDiff.months} أشهر`;
+    </script>
+</body>
+  </html>
